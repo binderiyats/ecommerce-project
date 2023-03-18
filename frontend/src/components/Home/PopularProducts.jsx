@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Products } from "../../data/products";
 import { Categories } from "../../data/categories";
 import { RiShoppingCart2Line } from "react-icons/ri";
+import { useCart } from "../../hooks/useCart";
 
 const CategoryItem = ({ category, currentCategory }) => {
   return (
@@ -19,6 +20,8 @@ const CategoryItem = ({ category, currentCategory }) => {
 };
 
 const ProductItem = ({ product }) => {
+  const { addProduct, showCart } = useCart();
+
   return (
     <div className="product-item">
       {product.sale && (
@@ -39,7 +42,13 @@ const ProductItem = ({ product }) => {
           <p>{product.brand}</p>
           <h4>${product.price}</h4>
         </div>
-        <div className="add-cart-btn">
+        <div
+          className="add-cart-btn"
+          onClick={() => {
+            addProduct(product);
+            showCart();
+          }}
+        >
           <RiShoppingCart2Line />
         </div>
       </div>

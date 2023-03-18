@@ -1,8 +1,11 @@
 import "../../styles/components/navbar.css";
 import { BiUser } from "react-icons/bi";
 import { RiShoppingCart2Line } from "react-icons/ri";
+import { useCart } from "../../hooks/useCart";
 
 export const Navbar = () => {
+  const { showCart } = useCart();
+
   return (
     <div className="navbar primary-bg">
       <div className="container">
@@ -20,7 +23,7 @@ export const Navbar = () => {
             <BiUser />
             <span>Sign In</span>
           </div>
-          <div className="cart-btn">
+          <div className="cart-btn" onClick={showCart}>
             <RiShoppingCart2Line />
             <span className="secondary-bg primary-color">0</span>
           </div>
