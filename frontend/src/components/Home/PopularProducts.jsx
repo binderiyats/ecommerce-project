@@ -21,6 +21,12 @@ const CategoryItem = ({ category, currentCategory }) => {
 const ProductItem = ({ product }) => {
   return (
     <div className="product-item">
+      {product.sale && (
+        <div className="item-sale primary-color secondary-bg">
+          Sale {product.sale}% off
+        </div>
+      )}
+
       <div className="picture">
         <img src={`./images/${product.imageUrl}`} alt={product.title} />
       </div>
