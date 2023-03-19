@@ -3,6 +3,7 @@
 :root {
   --primary-color: #003585;
   --secondary-color: #a7f65c;
+  --danger-color: #eb5757;
 }
 
 * {

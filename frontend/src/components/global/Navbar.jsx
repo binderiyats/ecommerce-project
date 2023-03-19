@@ -5,13 +5,14 @@ import { useCart } from "../../hooks/useCart";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import { LoginContext } from "../../contexts/LoginContext";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const Navbar = () => {
   const { showCart } = useCart();
   const { products } = useContext(CartContext);
   const { setShow: setLoginShow } = useContext(LoginContext);
   const [productsCount, setProductsCount] = useState(0);
+  const location = useLocation();
 
   useEffect(() => {
     let count = 0;
@@ -20,12 +21,20 @@ export const Navbar = () => {
   }, [products]);
 
   return (
-    <div className="navbar primary-bg">
+    <div
+      className={`navbar primary-bg ${
+        location.pathname === "/" ? "" : "white"
+      }`}
+    >
       <div className="container">
         <div className="logo">
           <Link to="/">
-            {" "}
-            <img src="./images/logo-white.svg" alt="Logo" />
+            <img
+              src={`./images/logo-${
+                location.pathname === "/" ? "white" : "dark"
+              }.svg`}
+              alt="Logo"
+            />
           </Link>
         </div>
 

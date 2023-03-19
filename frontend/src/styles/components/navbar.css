@@ -1,3 +1,8 @@
+.navbar.white {
+  background-color: white;
+  box-shadow: 0 5px 10px rgba(70, 70, 70, 0.24);
+}
+
 .navbar .container {
   display: flex;
   justify-content: space-between;
@@ -56,11 +61,19 @@
   border-radius: 0 25px 25px 0;
 }
 
+.navbar.white .search-btn {
+  background-color: var(--primary-color);
+}
+
 .user-links {
   display: flex;
   align-items: center;
   gap: 38px;
   color: white;
+}
+
+.navbar.white .user-links {
+  color: var(--primary-color);
 }
 
 .sign-in-btn,

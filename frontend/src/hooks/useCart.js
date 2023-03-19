@@ -19,12 +19,12 @@ export const useCart = () => {
     let isExists = false;
 
     for (let curProduct of products) {
-      if (curProduct.id === product.id) isExists = true;
+      if (curProduct._id === product._id) isExists = true;
     }
 
     if (isExists) {
       for (let curProduct of newProducts)
-        if (curProduct.id === product.id) curProduct.count += 1;
+        if (curProduct._id === product._id) curProduct.count += 1;
     } else {
       newProducts.push({ ...product, count: 1 });
     }

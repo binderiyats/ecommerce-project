@@ -5,14 +5,17 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { CartProvider } from "./contexts/CartContext";
 import { LoginProvider } from "./contexts/LoginContext";
+import { ToastProvider } from "./contexts/ToastContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <LoginProvider>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </LoginProvider>
+    <ToastProvider>
+      <LoginProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </LoginProvider>
+    </ToastProvider>
   </BrowserRouter>
 );
