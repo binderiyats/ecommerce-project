@@ -5,6 +5,7 @@ import { useCart } from "../../hooks/useCart";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import { LoginContext } from "../../contexts/LoginContext";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const { showCart } = useCart();
@@ -22,7 +23,10 @@ export const Navbar = () => {
     <div className="navbar primary-bg">
       <div className="container">
         <div className="logo">
-          <img src="./images/logo-white.svg" alt="Logo" />
+          <Link to="/">
+            {" "}
+            <img src="./images/logo-white.svg" alt="Logo" />
+          </Link>
         </div>
 
         <div className="searchbar">
