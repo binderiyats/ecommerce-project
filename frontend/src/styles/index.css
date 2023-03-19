@@ -69,3 +69,21 @@ a {
   cursor: pointer;
   font-weight: 600;
 }
+
+.primary-btn {
+  padding: 13px 32px;
+  color: white;
+  background: var(--primary-color);
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.outline-primary-btn {
+  padding: 13px 32px;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+}

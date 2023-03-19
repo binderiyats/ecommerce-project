@@ -4,10 +4,12 @@ import { RiShoppingCart2Line } from "react-icons/ri";
 import { useCart } from "../../hooks/useCart";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
+import { LoginContext } from "../../contexts/LoginContext";
 
 export const Navbar = () => {
   const { showCart } = useCart();
   const { products } = useContext(CartContext);
+  const { setShow: setLoginShow } = useContext(LoginContext);
   const [productsCount, setProductsCount] = useState(0);
 
   useEffect(() => {
@@ -29,7 +31,7 @@ export const Navbar = () => {
         </div>
 
         <div className="user-links">
-          <div className="sign-in-btn">
+          <div className="sign-in-btn" onClick={() => setLoginShow(true)}>
             <BiUser />
             <span>Sign In</span>
           </div>
