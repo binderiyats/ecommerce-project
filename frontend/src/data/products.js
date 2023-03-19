@@ -1,5 +1,6 @@
 export const Products = [
   {
+    id: 1,
     title: "Camera",
     brand: "Sony Alpha",
     price: 11.7,
@@ -7,6 +8,7 @@ export const Products = [
     imageUrl: "camera.png",
   },
   {
+    id: 2,
     title: "Wireless headphones",
     brand: "Beat",
     price: 11.7,
@@ -14,6 +16,7 @@ export const Products = [
     imageUrl: "headphone.png",
   },
   {
+    id: 3,
     title: "Wireless headphones",
     brand: "Beat 2",
     price: 11.7,
@@ -22,6 +25,7 @@ export const Products = [
     imageUrl: "headphone.png",
   },
   {
+    id: 4,
     title: "Play game",
     brand: "SS2",
     price: 11.7,
@@ -29,6 +33,7 @@ export const Products = [
     imageUrl: "controller.png",
   },
   {
+    id: 5,
     title: "Play game",
     brand: "SS5",
     price: 11.7,
@@ -37,6 +42,7 @@ export const Products = [
     imageUrl: "controller.png",
   },
   {
+    id: 6,
     title: "Tablet as a laptop",
     brand: "Macbook Pro",
     price: 11.7,
@@ -44,6 +50,7 @@ export const Products = [
     imageUrl: "laptop.png",
   },
   {
+    id: 7,
     title: "Play game",
     brand: "SS3",
     price: 11.7,
@@ -51,6 +58,7 @@ export const Products = [
     imageUrl: "controller.png",
   },
   {
+    id: 8,
     title: "Tablet as a laptop",
     brand: "Macbook Air",
     price: 11.7,

@@ -1,4 +1,6 @@
 import "../../styles/components/cart.css";
+import { AiOutlineClose } from "react-icons/ai";
+import { useEffect, useState } from "react";
 
 const CartItem = ({ product }) => {
   return (
@@ -7,14 +9,25 @@ const CartItem = ({ product }) => {
         <img src={`./images/${product.imageUrl}`} alt={product.title} />
       </div>
       <div className="content">
-        <h4>{product.title}</h4>
+        <h4 className="primary-color">{product.title}</h4>
         <p>Quantity: {product.count}</p>
+      </div>
+      <div className="close-btn">
+        <AiOutlineClose size={13} />
       </div>
     </div>
   );
 };
 
 export const Cart = ({ show, setShow, products, setProducts }) => {
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    let total = 0;
+    products.map((product) => (total += product.price * product.count));
+    setTotalPrice(total.toFixed(2));
+  }, [products]);
+
   return (
     <div className="cart-wrapper">
       <div className={`cart ${show ? "show" : ""}`}>
@@ -46,7 +59,7 @@ export const Cart = ({ show, setShow, products, setProducts }) => {
         <div className="bottom">
           <div className="amount">
             <h3>Нийт дүн</h3>
-            <h3>90,000₮</h3>
+            <h3>${totalPrice}</h3>
           </div>
           <div className="order-btn primary-bg">Захиалах</div>
         </div>

@@ -10,11 +10,23 @@ export const useCart = () => {
   const addProduct = (product) => {
     const newProducts = [...products];
 
-    if (products.length === 0) newProducts.push({ ...product, count: 1 });
+    if (products.length === 0) {
+      newProducts.push({ ...product, count: 1 });
+      setProducts(newProducts);
+      return;
+    }
 
-    for (let i = 0; i < products.length; i++) {
-      if (products[i].title === product.title) newProducts[i].count++;
-      else newProducts.push({ ...product, count: 1 });
+    let isExists = false;
+
+    for (let curProduct of products) {
+      if (curProduct.id === product.id) isExists = true;
+    }
+
+    if (isExists) {
+      for (let curProduct of newProducts)
+        if (curProduct.id === product.id) curProduct.count += 1;
+    } else {
+      newProducts.push({ ...product, count: 1 });
     }
 
     setProducts(newProducts);

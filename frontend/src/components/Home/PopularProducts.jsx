@@ -40,15 +40,9 @@ const ProductItem = ({ product }) => {
             {product.title}
           </Link>
           <p>{product.brand}</p>
-          <h4>${product.price}</h4>
+          <h4>${product.price.toFixed(2)}</h4>
         </div>
-        <div
-          className="add-cart-btn"
-          onClick={() => {
-            addProduct(product);
-            showCart();
-          }}
-        >
+        <div className="add-cart-btn" onClick={() => addProduct(product)}>
           <RiShoppingCart2Line />
         </div>
       </div>
