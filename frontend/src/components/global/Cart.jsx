@@ -65,7 +65,7 @@ export const Cart = ({ show, setShow, products, setProducts }) => {
           </div>
         ) : (
           <div className="empty-cart">
-            <img src="./images/empty-cart.svg" alt="Empty Cart" />
+            <img src="/images/empty-cart.svg" alt="Empty Cart" />
             <p>Сагс хоосон байна</p>
           </div>
         )}

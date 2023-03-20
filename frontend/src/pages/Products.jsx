@@ -1,13 +1,15 @@
-import { HeroSection } from "../components/Home/HeroSection";
-import { Partners } from "../components/Home/Partners";
-import { ProductsSection } from "../components/global/ProductsSection";
-import { SaleProduct } from "../components/Home/SaleProduct";
-import { SpecialAndNews } from "../components/Home/SpecialAndNews";
-import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { Breadcrumb } from "../components/global/Breadcrumb";
+import { ProductsSection } from "../components/global/ProductsSection";
 
-export const Home = () => {
+const breadcrumbItems = [
+  { name: "Home", link: "/" },
+  { name: "Products", link: "/products" },
+];
+
+export const Products = () => {
   const location = useLocation();
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("");
@@ -22,6 +24,8 @@ export const Home = () => {
     };
 
     fetchData();
+
+    window.scroll(0, 0);
   }, []);
 
   useEffect(() => {
@@ -31,7 +35,7 @@ export const Home = () => {
       setCurrentCategory("all");
 
       axios.get("http://localhost:8000/products").then((res) => {
-        setProducts(res.data.slice(0, 8));
+        setProducts(res.data);
         setIsReady(true);
       });
     } else {
@@ -43,31 +47,18 @@ export const Home = () => {
           )}`
         )
         .then((res) => {
-          setProducts(res.data.slice(0, 8));
+          setProducts(res.data);
           setIsReady(true);
         });
     }
   }, [location]);
 
-  const title = (
-    <span style={{ display: "flex", alignItems: "center", gap: 20 }}>
-      Popular products
-      <Link
-        className="secondary-color"
-        style={{ fontSize: 16, fontWeight: 500 }}
-        to={"/products"}
-      >
-        View all
-      </Link>
-    </span>
-  );
-
   return (
     <>
-      <HeroSection />
+      <Breadcrumb {...{ breadcrumbItems }} />
       <ProductsSection
         {...{
-          title,
+          title: "All products",
           categories,
           currentCategory,
           products,
@@ -75,9 +66,6 @@ export const Home = () => {
           setIsReady,
         }}
       />
-      <SaleProduct />
-      <SpecialAndNews />
-      <Partners />
     </>
   );
 };

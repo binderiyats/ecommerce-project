@@ -9,7 +9,7 @@ export const LogIn = ({ show, setShow }) => {
       <div className={`login ${show ? "show" : ""}`}>
         <div className="header">
           <div className="logo">
-            <img src="./images/logo-dark.svg" alt="Logo Dark" />
+            <img src="/images/logo-dark.svg" alt="Logo Dark" />
           </div>
 
           <div onClick={() => setShow(false)} className="close-btn">

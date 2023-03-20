@@ -8,7 +8,7 @@ export const Footer = () => {
       <div className="container">
         <div className="logo">
           <Link to="/">
-            <img src="./images/logo-white.svg" alt="Logo" />
+            <img src="/images/logo-white.svg" alt="Logo" />
           </Link>
         </div>
 

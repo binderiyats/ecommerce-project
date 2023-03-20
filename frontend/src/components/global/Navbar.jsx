@@ -30,7 +30,7 @@ export const Navbar = () => {
         <div className="logo">
           <Link to="/">
             <img
-              src={`./images/logo-${
+              src={`/images/logo-${
                 location.pathname === "/" ? "white" : "dark"
               }.svg`}
               alt="Logo"

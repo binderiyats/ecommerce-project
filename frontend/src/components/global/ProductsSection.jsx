@@ -11,7 +11,7 @@ const CategoryItem = ({ category, currentCategory, setIsReady }) => {
   return (
     <Link
       onClick={() => setIsReady(false)}
-      to={category.slug === "all" ? "/" : `/?category=${category.slug}`}
+      to={category.slug === "all" ? "" : `?category=${category.slug}`}
       className={`category-item primary-color ${
         currentCategory === category.slug ? "active" : ""
       }`}
@@ -42,7 +42,7 @@ const ProductItem = ({ product }) => {
 
       <div className="info">
         <div className="content">
-          <Link to="#" className="primary-color">
+          <Link to={`/products/${product._id}`} className="primary-color">
             {product.name}
           </Link>
           <p>{product.brand}</p>
@@ -66,52 +66,18 @@ const ProductItem = ({ product }) => {
   );
 };
 
-export const PopularProducts = () => {
-  const location = useLocation();
-  const [categories, setCategories] = useState([]);
-  const [currentCategory, setCurrentCategory] = useState("");
-  const [products, setProducts] = useState([]);
-  const [isReady, setIsReady] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const categoryRes = await axios.get("http://localhost:8000/categories");
-
-      setCategories(categoryRes.data);
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-
-    if (!searchParams.has("category")) {
-      setCurrentCategory("all");
-
-      axios.get("http://localhost:8000/products").then((res) => {
-        setProducts(res.data);
-        setIsReady(true);
-      });
-    } else {
-      setCurrentCategory(searchParams.get("category"));
-      axios
-        .get(
-          `http://localhost:8000/products?category=${searchParams.get(
-            `category`
-          )}`
-        )
-        .then((res) => {
-          setProducts(res.data);
-          setIsReady(true);
-        });
-    }
-  }, [location]);
-
+export const ProductsSection = ({
+  title,
+  currentCategory,
+  categories = [],
+  products = [],
+  isReady,
+  setIsReady,
+}) => {
   return (
     <div className="popular-products container">
       <div className="header">
-        <h3 className="primary-color">Popular Products</h3>
+        <h3 className="primary-color">{title}</h3>
         <div className="categories">
           <CategoryItem
             category={{ name: "All", slug: "all" }}
