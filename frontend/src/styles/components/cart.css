@@ -82,6 +82,9 @@
 }
 
 .empty-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   flex: 1;
   align-self: center;
   text-align: center;
