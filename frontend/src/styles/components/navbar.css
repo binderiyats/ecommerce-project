@@ -41,6 +41,8 @@
   font-size: 14px;
   font-weight: 500;
   color: #7a99c8;
+  outline: none;
+  box-shadow: none;
 }
 
 .searchbar input::placeholder {
@@ -48,12 +50,6 @@
   font-size: 14px;
   font-weight: 500;
   color: #7a99c8;
-}
-
-.searchbar input {
-  border: none;
-  outline: none;
-  box-shadow: none;
 }
 
 .search-btn {

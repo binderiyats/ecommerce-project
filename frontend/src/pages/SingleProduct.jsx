@@ -16,8 +16,9 @@ export const SingleProduct = () => {
   ]);
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [count, setCount] = useState(1);
   const [isReady, setIsReady] = useState(false);
-  const { addProduct } = useCart();
+  const { addProduct, showCart } = useCart();
   const { showToast } = useToast();
 
   useEffect(() => {
@@ -40,7 +41,10 @@ export const SingleProduct = () => {
     window.scroll(0, 0);
 
     return () => {
+      setProduct({});
+      setRelatedProducts([]);
       setIsReady(false);
+      setCount(1);
     };
   }, [id]);
 
@@ -92,19 +96,34 @@ export const SingleProduct = () => {
                 <div className="quantity">
                   <h5>Quantity: </h5>
                   <div className="number-input">
-                    <div className="number-btn">-</div>
-                    <input type="number" value={1} />
-                    <div className="number-btn">+</div>
+                    <div
+                      className="number-btn"
+                      onClick={() => setCount(Number(count) - 1)}
+                    >
+                      -
+                    </div>
+                    <input
+                      type="number"
+                      value={count}
+                      onChange={(e) => setCount(e.target.value)}
+                    />
+                    <div
+                      className="number-btn"
+                      onClick={() => setCount(Number(count) + 1)}
+                    >
+                      +
+                    </div>
                   </div>
                 </div>
 
                 <div className="btns">
                   <div
                     onClick={() => {
-                      addProduct(product);
+                      addProduct({ ...product, count: Number(count) });
                       showToast({
                         content: "Сагсанд амжилттай нэмэгдлээ",
                         type: "success",
+                        onClick: showCart,
                       });
                     }}
                     className="primary-btn"

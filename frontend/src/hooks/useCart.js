@@ -11,7 +11,9 @@ export const useCart = () => {
     const newProducts = [...products];
 
     if (products.length === 0) {
-      newProducts.push({ ...product, count: 1 });
+      if (product.count) newProducts.push(product);
+      else newProducts.push({ ...product, count: 1 });
+
       setProducts(newProducts);
       return;
     }
@@ -24,9 +26,13 @@ export const useCart = () => {
 
     if (isExists) {
       for (let curProduct of newProducts)
-        if (curProduct._id === product._id) curProduct.count += 1;
+        if (curProduct._id === product._id) {
+          if (product.count) curProduct.count += product.count;
+          else curProduct.count += 1;
+        }
     } else {
-      newProducts.push({ ...product, count: 1 });
+      if (product.count) newProducts.push(product);
+      else newProducts.push({ ...product, count: 1 });
     }
 
     setProducts(newProducts);
