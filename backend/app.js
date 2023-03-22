@@ -6,6 +6,7 @@ import multer from "multer";
 
 import categoryRoutes from "./routes/categories.js";
 import productRoutes from "./routes/products.js";
+import userRoutes from "./routes/users.js";
 import { createProduct } from "./controllers/products.js";
 
 const PORT = process.env.PORT;
@@ -31,6 +32,7 @@ app.post("/products", upload.array("images", 4), createProduct);
 
 app.use("/categories", categoryRoutes);
 app.use("/products", productRoutes);
+app.use("/users", userRoutes);
 
 mongoose
   .connect(MONGO_CONNECTION_STRING)
