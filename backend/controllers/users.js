@@ -3,6 +3,22 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { customAlphabet } from "nanoid";
 
+export const getAuthenticatedUser = async (req, res, next) => {
+  const userId = req.user.id;
+
+  try {
+    const user = await UserModel.findById(userId, {
+      _id: 0,
+      createdAt: 0,
+      updatedAt: 0,
+    });
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const signUp = async (req, res, next) => {
   const { firstName, lastName, phone, email, password: passwordRaw } = req.body;
 
@@ -39,7 +55,7 @@ export const logIn = async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
-    const user = await UserModel.findOne({ email });
+    const user = await UserModel.findOne({ email }).select("+password");
     if (!user)
       return res.status(400).json("Таны оруулсан мэдээлэл буруу байна!");
 
@@ -47,10 +63,44 @@ export const logIn = async (req, res, next) => {
     if (!isPasswordMatch)
       return res.status(400).json("Таны оруулсан мэдээлэл буруу байна!");
 
-    const token = jwt.sign({ ...user }, "Kingenroseking123~~~", {
+    const token = jwt.sign({ id: user._id }, "Kingenroseking123~~~", {
       expiresIn: "1h",
     });
     res.status(200).json(token);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getUsers = async (req, res, next) => {
+  try {
+    const users = await UserModel.find();
+    res.status(200).json(users);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getUser = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const user = await UserModel.findById(id);
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteUser = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const user = await UserModel.findById(id);
+
+    await user.deleteOne();
+    res.status(200).json(id);
   } catch (error) {
     console.log(error);
   }

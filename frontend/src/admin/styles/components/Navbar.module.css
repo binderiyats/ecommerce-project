@@ -57,14 +57,17 @@
   background-color: #fcfcfc;
   border-radius: 12px;
   padding: 8px 15px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
   cursor: pointer;
   font-size: 16px;
   color: #333;
   font-weight: 500;
   transition: all 0.3s ease;
+}
+
+.logoutBtn a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .logoutBtn svg {

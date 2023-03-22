@@ -1,5 +1,6 @@
 import styles from "../styles/components/Navbar.module.css";
 import { BiLogOut } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   return (
@@ -14,7 +15,9 @@ export const Navbar = () => {
       </div>
 
       <div className={styles.logoutBtn}>
-        <BiLogOut /> Гарах
+        <Link to={"/logout"}>
+          <BiLogOut /> Гарах
+        </Link>
       </div>
     </div>
   );

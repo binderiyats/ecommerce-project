@@ -28,6 +28,7 @@ const UserSchema = new Schema(
     password: {
       type: String,
       required: true,
+      select: false,
     },
     address: {
       type: Object,
@@ -36,6 +37,11 @@ const UserSchema = new Schema(
     orders: {
       type: Array,
       default: [],
+    },
+    role: {
+      type: String,
+      enum: ["Admin", "Moderator", "Customer"],
+      default: "Customer",
     },
   },
   { timestamps: true }

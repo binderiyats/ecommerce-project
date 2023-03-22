@@ -6,10 +6,12 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import { LoginContext } from "../../contexts/LoginContext";
 import { Link, useLocation } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
 
 export const Navbar = () => {
   const { showCart } = useCart();
   const { products } = useContext(CartContext);
+  const { user } = useContext(UserContext);
   const { setShow: setLoginShow } = useContext(LoginContext);
   const [productsCount, setProductsCount] = useState(0);
   const location = useLocation();

@@ -174,3 +174,7 @@
   font-size: 16px;
   font-weight: 500;
 }
+
+.login form .primary-btn {
+  width: 100%;
+}

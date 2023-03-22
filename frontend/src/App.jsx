@@ -5,6 +5,7 @@ import { SingleProduct } from "./pages/SingleProduct";
 import { PublicLayout } from "./layouts/PublicLayout";
 import { PrivateLayout } from "./layouts/PrivateLayout";
 import { Dashboard } from "./admin/pages/Dashboard";
+import { Logout } from "./pages/Logout";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route index element={<Products />} />
           <Route path=":id" element={<SingleProduct />} />
         </Route>
+        <Route path="/logout" element={<Logout />} />
       </Route>
 
       <Route path="/admin" element={<PrivateLayout />}>
